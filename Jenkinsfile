@@ -5,6 +5,10 @@ pipeline {
             string(name: 'port', defaultValue: '5000:5000', description: 'enter port number')
         }
     stages {
+     stage('Initialize'){
+            def dockerHome = tool 'mydocker'
+            env.PATH = "${dockerHome}/bin:${env.PATH}"
+        }
         stage('build') {
             steps {
                 sh 'docker build -t myflask .'
