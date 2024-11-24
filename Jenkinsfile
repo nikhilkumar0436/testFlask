@@ -13,6 +13,7 @@ pipeline {
             }
         }
     }
+
         stage('build') {
             steps {
                 sh 'docker build -t myflask .'
@@ -20,7 +21,7 @@ pipeline {
         }
         stage('deploy') {
             steps {
-                sh 'docker run -p ${params.port} myflask-${params.ENV} -d --name myflask'
+        sh "docker run -p ${params.port} --name myflask -d myflask-${params.ENV}"
             }
         }
 //          stage('test') {
